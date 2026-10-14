@@ -757,10 +757,10 @@ END_PRINT</pre></div>
     <p>La cama está a 70 a propósito: cuanto más caliente, más se suelda. Si te despega en una esquina, sumá brim antes de subir temperatura.</p>
   </div>
   <p>Proceso: <code>0.20mm PETG @EnderS1Pro</code>.</p>
-  <p><strong>Primera capa menos aplastada, sin tocar el probe.</strong> El <code>z_offset</code> es uno solo y está calibrado con PLA. <code>START_PRINT</code> tiene una tabla <code>variable_z_adjust</code> por material, hermana de <code>variable_pa</code>, que se suma al <code>z_offset</code>: PETG va <strong>+0.03 mm</strong>, el resto 0. Es punto de partida: se afina con la línea de purga, que tiene que verse redondeada arriba, no plana y translúcida.</p>
+  <p><strong>Primera capa con el mismo aplastamiento que el PLA.</strong> El <code>z_offset</code> es uno solo y está calibrado con PLA. <code>START_PRINT</code> tiene una tabla <code>variable_z_adjust</code> por material, hermana de <code>variable_pa</code>, que se suma al <code>z_offset</code>: hoy todos los materiales van en <strong>0</strong>. El PETG estuvo en +0.03 y la purga salió apenas apoyada y la pieza no pegó: sobre PEI liso con pegamento necesita el mismo aplastamiento que el PLA. Si se vuelve a tocar, de a 0.01 y mirando la purga, que tiene que verse redondeada arriba, no plana y translúcida.</p>
   <div class="note warn">
-    <span class="tag">No promuevas babysteps de PETG</span>
-    <p><code>Z_OFFSET_APPLY_PROBE</code> toma el offset total, ajuste incluido, y el 0.03 quedaría sumado dos veces. El <code>z_offset</code> del probe se afina con PLA.</p>
+    <span class="tag">Babysteps solo con ajuste 0</span>
+    <p><code>Z_OFFSET_APPLY_PROBE</code> toma el offset total, ajuste incluido, y un ajuste distinto de 0 quedaría sumado dos veces. El <code>z_offset</code> del probe se afina con PLA.</p>
   </div>
   <p><strong>Secado.</strong> El PETG absorbe humedad, y un rollo húmedo da hilos, burbujas y superficie opaca que se confunden con un problema de retracción. Secalo a 65 grados durante 4 a 6 horas antes de tocar la retracción.</p>
 
@@ -861,7 +861,7 @@ END_PRINT</pre></div>
      O babystepear durante una primera capa y promoverlo despues con
      Z_OFFSET_APPLY_PROBE + SAVE_CONFIG. Un babystep suelto NO sobrevive:
      START_PRINT resetea el offset al ajuste del material. Promover SOLO
-     desde una impresion de PLA: en PETG el total ya trae +0.03.
+     desde una impresion de PLA: si el material tiene ajuste, se suma dos veces.
 
  A4. TORRE DE RINGING                                     ~20 min
      OrcaSlicer -&gt; Calibration -&gt; Input Shaper (la torre, no el ADXL)

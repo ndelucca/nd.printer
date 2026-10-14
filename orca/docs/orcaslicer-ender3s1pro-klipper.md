@@ -677,24 +677,25 @@ en tiempo absoluto es casi nada.
 
 Proceso: `0.20mm PETG @EnderS1Pro` (ver sección 5).
 
-**Primera capa menos aplastada, sin tocar el probe.** El `z_offset` es uno solo
-y está calibrado con PLA, que quiere ir aplastado. El PETG aplastado igual
-arrastra material con el nozzle, deja gotas y se suelda todavía más al PEI.
-`START_PRINT` tiene una tabla `variable_z_adjust` por material, hermana de
-`variable_pa`, que se suma al `z_offset` del probe:
+**Primera capa con el mismo aplastamiento que el PLA.** El `z_offset` es uno
+solo y está calibrado con PLA. `START_PRINT` tiene una tabla `variable_z_adjust`
+por material, hermana de `variable_pa`, que se suma al `z_offset` del probe:
 
 ```
- PLA 0.00   PETG +0.03   ABS 0.00   TPU 0.00      (mm, positivo = más alto)
+ PLA 0.00   PETG 0.00   ABS 0.00   TPU 0.00      (mm, positivo = más alto)
 ```
 
-El 0.03 es punto de partida: se afina con la línea de purga de una impresión de
-PETG, que tiene que verse redondeada arriba, no plana y translúcida. `check`
-valida la forma de la tabla (valores numéricos, menores a 0.1, claves que sean
-materiales que existen).
+El PETG estuvo en +0.03, por el consejo genérico de "PETG menos aplastado para
+que no arrastre". En esta máquina la purga salió apenas apoyada y la pieza no
+pegó en absoluto: sobre PEI liso con pegamento el PETG necesita el mismo
+aplastamiento que el PLA. Si se vuelve a tocar, de a 0.01 y mirando la purga,
+que tiene que verse redondeada arriba, no plana y translúcida (apenas apoyada
+es Z alto). `check` valida la forma de la tabla (valores numéricos, menores a
+0.1, claves que sean materiales que existen).
 
-> **No promuevas babysteps de una impresión de PETG** con
-> `Z_OFFSET_APPLY_PROBE`: toma el offset total, ajuste incluido, y el 0.03
-> quedaría sumado dos veces. El `z_offset` del probe se afina con PLA.
+> **Promové babysteps solo desde impresiones con ajuste 0.**
+> `Z_OFFSET_APPLY_PROBE` toma el offset total, ajuste incluido, y un ajuste
+> distinto de 0 quedaría sumado dos veces. El `z_offset` del probe se afina con PLA.
 
 **Secado.** El PETG absorbe humedad, y un rollo húmedo da hilos, burbujas y
 superficie opaca que se confunden con un problema de retracción. Secalo a 65
@@ -879,7 +880,8 @@ calibrar el flujo significa recalibrar el flujo.
      Un babystep suelto NO sobrevive: START_PRINT resetea el offset en cada
      impresion, al ajuste de Z del material (variable_z_adjust).
      OJO: promover SOLO desde una impresion de PLA. Z_OFFSET_APPLY_PROBE toma
-     el offset total, y en PETG ese total ya trae +0.03 de la tabla.
+     el offset total, y si la tabla tiene un ajuste para el material lo suma
+     dos veces.
 
  A4. TORRE DE RINGING                                     ~20 min
      OrcaSlicer -> Calibration -> Input Shaper (la torre, no el ADXL)
