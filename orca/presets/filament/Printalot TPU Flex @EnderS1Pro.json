@@ -54,7 +54,7 @@
         "3.5"
     ],
     "filament_notes": [
-        "Printalot Flex / TPU (shore ~95A) - 1.75mm\nEl caudal maximo de 3.5 mm3/s es el que manda: Orca frena todas las\nvelocidades solo. No hace falta un proceso distinto.\nRetraccion minima (0.4mm) y sin z-hop para que no se trabe el Sprite.\nCargar el filamento a mano, despacio, con el extrusor caliente.\nPressure advance 0.1 de partida (direct drive): calibrarlo con este rollo."
+        "Printalot Flex / TPU (shore ~95A) - 1.75mm\nEl caudal maximo de 3.5 mm3/s es el que manda: Orca frena todas las\nvelocidades solo.\nProceso: 0.20mm TPU @EnderS1Pro (soportes que se despegan).\nRetraccion minima (0.4mm) y sin z-hop para que no se trabe el Sprite.\nCargar el filamento a mano, despacio, con el extrusor caliente.\nPressure advance 0.1 de partida (direct drive): calibrarlo con este rollo."
     ],
     "filament_retract_before_wipe": [
         "0%"

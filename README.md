@@ -277,7 +277,7 @@ medido y no de uno de fábrica.
    docs/                el porque de cada valor
 ```
 
-Un perfil de impresora, cinco procesos y cuatro filamentos de Printalot,
+Un perfil de impresora, seis procesos y cuatro filamentos de Printalot,
 calibrados contra esta máquina en particular. Ver `orca/README.md` para el
 detalle y `orca/docs/` para el razonamiento detrás de cada número.
 

@@ -777,7 +777,37 @@ ABS_PROC = replace(
     draft_shield="enabled",
 )
 
-PROCESSES = [FINE, STANDARD, STRONG, DRAFT, ABS_PROC]
+# 0.20mm TPU: el mismo Standard, con soportes que se puedan sacar.
+#
+# Existe por la misma grieta que el de ABS: las claves de soporte son de
+# PROCESO y un filamento no las puede pisar. Los soportes de Standard estan
+# pensados para PLA -una capa de aire, interfaz casi solida- y el TPU se pega
+# muy bien a si mismo y, al ser elastico, no se quiebra en la union como el PLA:
+# se estira. Con esos valores el soporte queda soldado a la pieza.
+#
+# LO QUE NO SE TOCA: la velocidad. La gobierna el techo de caudal del
+# filamento (3.5 mm3/s), igual que en cualquier otro proceso.
+TPU_PROC = replace(
+    STANDARD,
+    name="0.20mm TPU " + SUF,
+    # Dos capas de aire y no una. Es lo que corta la soldadura; el costo es
+    # una cara inferior mas rugosa en los voladizos. `check` exige multiplo
+    # entero de la altura de capa, y 0.4 son exactamente dos de 0.2.
+    support_top_z_distance="0.4",
+    support_bottom_z_distance="0.4",
+    # El TPU se ensancha al salir y se fusiona de costado con 0.35.
+    support_object_xy_distance="0.6",
+    # Interfaz abierta: menos superficie de contacto, se pela en vez de
+    # desgarrarse. Sin interfaz inferior para no apoyar material de mas
+    # sobre la pieza cuando el soporte arranca encima de ella.
+    support_interface_spacing="0.5",
+    support_interface_bottom_layers="0",
+    # Sin planchado: la cara superior de un flexible cede bajo el nozzle y el
+    # segundo pase arrastra material en vez de alisarlo.
+    ironing_type="no ironing",
+)
+
+PROCESSES = [FINE, STANDARD, STRONG, DRAFT, ABS_PROC, TPU_PROC]
 
 
 # ============================================================================
@@ -978,7 +1008,8 @@ TPU = replace(
     pressure_advance=("0.1",),
     filament_notes=("Printalot Flex / TPU (shore ~95A) - 1.75mm\n"
                     "El caudal maximo de 3.5 mm3/s es el que manda: Orca frena todas las\n"
-                    "velocidades solo. No hace falta un proceso distinto.\n"
+                    "velocidades solo.\n"
+                    "Proceso: 0.20mm TPU @EnderS1Pro (soportes que se despegan).\n"
                     "Retraccion minima (0.4mm) y sin z-hop para que no se trabe el Sprite.\n"
                     "Cargar el filamento a mano, despacio, con el extrusor caliente.\n"
                     "Pressure advance 0.1 de partida (direct drive): calibrarlo con este rollo.",),

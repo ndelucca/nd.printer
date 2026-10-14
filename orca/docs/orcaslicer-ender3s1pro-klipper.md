@@ -6,7 +6,7 @@ Raspberry Pi 3B+, con nozzle estándar de 0.4 mm y filamentos Printalot.
 - **Fecha**: 2026-08-26
 - **OrcaSlicer**: 2.4.2
 - **Host de impresión**: Moonraker / Mainsail (la URL es local, ver `.printer-host`)
-- **Perfiles**: 1 impresora, 5 procesos, 4 filamentos
+- **Perfiles**: 1 impresora, 6 procesos, 4 filamentos
 
 ---
 
@@ -110,6 +110,7 @@ Todo vive en `%APPDATA%\OrcaSlicer\user\default\`.
      |   +-- 0.20mm Strong @EnderS1Pro.json
      |   +-- 0.28mm Draft @EnderS1Pro.json
      |   +-- 0.20mm ABS @EnderS1Pro.json
+     |   +-- 0.20mm TPU @EnderS1Pro.json
      |   +-- (un .info por cada uno)
      |
      +-- filament\
@@ -146,7 +147,7 @@ OrcaSlicer.
   contenía el filamento suelto `Printalot PLA @Klipper`.
 - Los filamentos genéricos de sistema visibles bajaron de 10 a 4 (se dejaron
   solo PLA, PETG, ABS y TPU, que son los padres de los perfiles Printalot).
-- Los 5 procesos y los 4 filamentos declaran `compatible_printers:
+- Los 6 procesos y los 4 filamentos declaran `compatible_printers:
   ["EnderS1ProKlipper"]`, así que **no aparecen si seleccionás otra impresora**.
 
 ### Repositorio
@@ -405,31 +406,32 @@ la cola de impresión en vez de un ícono genérico.
 
 ---
 
-## 5. Los 5 procesos
+## 5. Los 6 procesos
 
 La idea es que el **proceso define la geometría y la ambición de velocidad**, y
 el **filamento pone el techo de caudal**. Casi no hay procesos por material:
-eso lo resuelve solo Orca (ver sección 7). La única excepción es el ABS, y más
-abajo está el porqué.
+eso lo resuelve solo Orca (ver sección 7). Las excepciones son el ABS y el TPU,
+y más abajo está el porqué.
 
-| | Fine | **Standard** | Strong | Draft | ABS |
-|---|---|---|---|---|---|
-| Altura de capa | 0.12 | **0.20** | 0.20 | 0.28 | 0.20 |
-| Perímetros | 2 | **3** | 4 | 2 | 3 |
-| Relleno | 15% gyroid | **15% gyroid** | 40% cubic | 10% gyroid | 15% gyroid |
-| Techo superior | 0.84 mm | **0.80 mm** | 1.00 mm | 0.84 mm | 0.80 mm |
-| Base | 0.60 mm | **0.60 mm** | 0.80 mm | 0.56 mm | 0.60 mm |
-| Pared exterior | 45 mm/s | **50 mm/s** | 50 mm/s | 50 mm/s | 50 mm/s |
-| Pared interior | 120 mm/s | **110 mm/s** | 100 mm/s | 80 mm/s | 110 mm/s |
-| Relleno disperso | 140 mm/s | **110 mm/s** | 110 mm/s | 75 mm/s | 110 mm/s |
-| Relleno sólido | 130 mm/s | **115 mm/s** | 110 mm/s | 80 mm/s | 115 mm/s |
-| Superficie superior | 40 mm/s | **45 mm/s** | 45 mm/s | 45 mm/s | 45 mm/s |
-| Caudal pedido | 7.6 mm3/s | **9.9 mm3/s** | 9.9 mm3/s | 10.8 mm3/s | 9.9 mm3/s |
-| Costura scarf | sí | **sí** | sí | no | sí |
-| Planchado | sí | **sí** | no | no | sí |
-| Orden de paredes | normal | **normal** | inner-outer-inner | normal | normal |
-| Brim | auto | **auto** | auto | auto | outer_only 8 mm |
-| Draft shield | no | **no** | no | no | sí |
+| | Fine | **Standard** | Strong | Draft | ABS | TPU |
+|---|---|---|---|---|---|---|
+| Altura de capa | 0.12 | **0.20** | 0.20 | 0.28 | 0.20 | 0.20 |
+| Perímetros | 2 | **3** | 4 | 2 | 3 | 3 |
+| Relleno | 15% gyroid | **15% gyroid** | 40% cubic | 10% gyroid | 15% gyroid | 15% gyroid |
+| Techo superior | 0.84 mm | **0.80 mm** | 1.00 mm | 0.84 mm | 0.80 mm | 0.80 mm |
+| Base | 0.60 mm | **0.60 mm** | 0.80 mm | 0.56 mm | 0.60 mm | 0.60 mm |
+| Pared exterior | 45 mm/s | **50 mm/s** | 50 mm/s | 50 mm/s | 50 mm/s | 50 mm/s |
+| Pared interior | 120 mm/s | **110 mm/s** | 100 mm/s | 80 mm/s | 110 mm/s | 110 mm/s |
+| Relleno disperso | 140 mm/s | **110 mm/s** | 110 mm/s | 75 mm/s | 110 mm/s | 110 mm/s |
+| Relleno sólido | 130 mm/s | **115 mm/s** | 110 mm/s | 80 mm/s | 115 mm/s | 115 mm/s |
+| Superficie superior | 40 mm/s | **45 mm/s** | 45 mm/s | 45 mm/s | 45 mm/s | 45 mm/s |
+| Caudal pedido | 7.6 mm3/s | **9.9 mm3/s** | 9.9 mm3/s | 10.8 mm3/s | 9.9 mm3/s | 9.9 mm3/s |
+| Costura scarf | sí | **sí** | sí | no | sí | sí |
+| Planchado | sí | **sí** | no | no | no | no |
+| Orden de paredes | normal | **normal** | inner-outer-inner | normal | normal | normal |
+| Brim | auto | **auto** | auto | auto | outer_only 8 mm | auto |
+| Draft shield | no | **no** | no | no | sí | no |
+| Soportes: hueco Z / XY | 0.24 / 0.35 | **0.20 / 0.35** | 0.20 / 0.35 | 0.28 / 0.35 | 0.20 / 0.35 | 0.40 / 0.60 |
 
 **Para qué es cada uno:**
 
@@ -446,6 +448,8 @@ abajo está el porqué.
   mejore mucho.
 - **0.20mm ABS** - Standard con lo que el ABS necesita para sobrevivir a una
   impresora **sin encerramiento**. Ver abajo.
+- **0.20mm TPU** - Standard con soportes que se pueden despegar de un
+  flexible. Ver abajo.
 
 ### Por qué el ABS sí necesita su propio proceso
 
@@ -565,6 +569,24 @@ cortavientos. Ver sección 5.
 
 ---
 
+### Por qué el TPU también tiene su propio proceso
+
+Por la misma razón que el ABS: **las claves de soporte son de proceso** y el
+filamento no las puede pisar. Los soportes de Standard están pensados para PLA,
+y en un flexible quedan soldados: el TPU se pega muy bien a sí mismo y, al ser
+elástico, no se quiebra en la unión como el PLA, se estira.
+
+| Clave | Standard | TPU | Por qué |
+|---|---|---|---|
+| `support_top_z_distance` / `bottom` | 0.20 | 0.40 | Dos capas de aire cortan la soldadura. Sigue siendo múltiplo de la capa, que es lo que `check` exige |
+| `support_object_xy_distance` | 0.35 | 0.60 | El TPU se ensancha al salir y se fusiona de costado |
+| `support_interface_spacing` | 0.2 | 0.5 | Interfaz abierta: menos contacto, se pela en vez de desgarrarse |
+| `support_interface_bottom_layers` | 2 | 0 | No apoyar material de más sobre la pieza |
+| `ironing_type` | planchado | no | La cara superior cede bajo el nozzle y el segundo pase arrastra |
+
+El costo es una cara inferior más rugosa en los voladizos. La velocidad no se
+toca: la sigue gobernando el techo de caudal del filamento.
+
 ## 6. Los 4 filamentos
 
 | | PLA | PETG | ABS | TPU Flex |
@@ -674,8 +696,9 @@ porcentaje para que al enfriarse quede con la medida correcta.
 
 **TPU Flex**
 
-El caudal máximo de 3.5 mm3/s es el que gobierna todo. No necesitás un proceso
-aparte: Orca frena solo todas las velocidades (ver sección siguiente).
+El caudal máximo de 3.5 mm3/s es el que gobierna todo: Orca frena solo todas
+las velocidades (ver sección siguiente). El proceso aparte, `0.20mm TPU
+@EnderS1Pro`, no es por velocidad sino por los soportes (ver sección 5).
 
 Configuración específica para que no se trabe el Sprite:
 
@@ -745,6 +768,7 @@ Contraste completo de los procesos contra los materiales:
  0.20mm Strong         ok      frena       ok      frena     9.9
  0.28mm Draft        frena     frena     frena     frena    10.8
  0.20mm ABS            ok      frena       ok      frena     9.9
+ 0.20mm TPU            ok      frena       ok      frena     9.9
 ```
 
 "frena" no es un error: es el sistema funcionando. Significa que el proceso pide
