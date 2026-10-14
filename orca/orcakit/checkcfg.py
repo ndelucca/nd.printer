@@ -450,7 +450,7 @@ def _features(r: Report, m: Machine, cfg: Config,
 
 def _pressure_advance(r: Report, macros: dict[str, dict[str, str]],
                       start: str | None) -> None:
-    r.section("5. PRESSURE ADVANCE")
+    r.section("5. PRESSURE ADVANCE Y AJUSTE DE Z")
     raw = macros.get(start or "", {}).get("variable_pa")
     try:
         table = ast.literal_eval(raw) if raw else None
@@ -474,6 +474,51 @@ def _pressure_advance(r: Report, macros: dict[str, dict[str, str]],
                    f"orca={pa:g}  klipper={float(table[material]):g}")
         else:
             r.ok(f"PA de {f.name}", f"{material} -> {pa:g}")
+
+
+# Techo del ajuste de Z por material. Mas que esto ya no es una diferencia de
+# aplastamiento entre materiales: es un z_offset mal calibrado tapado desde la
+# tabla, y se corrige en el probe.
+Z_ADJUST_MAX = 0.1
+
+
+def _z_adjust(r: Report, macros: dict[str, dict[str, str]],
+              start: str | None) -> None:
+    """La tabla `variable_z_adjust`: cuanto sube el nozzle cada material.
+
+    Va en la misma seccion que el pressure advance porque es el mismo patron:
+    una tabla por material dentro de START_PRINT, indexada por el
+    [filament_type] que anuncia el laminador. A diferencia del PA no tiene
+    espejo en Orca, asi que lo que se valida es la forma: que los valores sean
+    sensatos y que las claves sean materiales que existen (un 'PETg' mal
+    escrito no falla en Klipper, cae en 0 en silencio).
+    """
+    raw = macros.get(start or "", {}).get("variable_z_adjust")
+    try:
+        table = ast.literal_eval(raw) if raw else None
+    except (ValueError, SyntaxError):
+        table = None
+    if not isinstance(table, dict):
+        r.fail(f"variable_z_adjust en {start}", "ausente o no es un diccionario")
+        return
+
+    r.ok(f"variable_z_adjust en {start}", str(table))
+    materiales = {values.first(f.filament_type) for f in profiles.FILAMENTS}
+    for material, adj in table.items():
+        try:
+            adj = float(adj)
+        except (TypeError, ValueError):
+            r.fail(f"ajuste de Z de {material}", f"{adj!r} no es numerico")
+            continue
+        if abs(adj) > Z_ADJUST_MAX:
+            r.fail(f"ajuste de Z de {material}",
+                   f"{adj:g} mm pasa el techo de {Z_ADJUST_MAX:g}: "
+                   "eso se corrige en el z_offset del probe")
+        elif material not in materiales:
+            r.warn(f"ajuste de Z de {material}",
+                   "ningun filamento de profiles.py tiene ese filament_type")
+        else:
+            r.ok(f"ajuste de Z de {material}", f"{adj:+g} mm")
 
 
 def _input_shaper(r: Report, cfg: Config) -> None:
@@ -608,6 +653,7 @@ def run(klipper_dir: Path | str) -> Report:
     _thermal(r, cfg)
     start = _features(r, m, cfg, macros, moonraker)
     _pressure_advance(r, macros, start)
+    _z_adjust(r, macros, start)
     _input_shaper(r, cfg)
     end, _ = _call(m.machine_end_gcode)
     _macro_geometry(r, cfg, macros, tuple(n for n in (start, end) if n))

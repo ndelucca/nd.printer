@@ -288,6 +288,38 @@ class TestProcessCoherence(unittest.TestCase):
         self.assertEqual(self._run("0.2", "0").failures, 0)
 
 
+class TestZAdjust(unittest.TestCase):
+    """La tabla de ajuste de Z por material de START_PRINT."""
+
+    def _run(self, raw):
+        r = Report()
+        checkcfg._z_adjust(r, {"START_PRINT": {"variable_z_adjust": raw}},
+                           "START_PRINT")
+        return r
+
+    def test_la_tabla_del_repo_pasa(self):
+        r = self._run("{'PLA': 0.0, 'PETG': 0.03, 'ABS': 0.0, 'TPU': 0.0}")
+        self.assertEqual((r.failures, r.warnings), (0, 0))
+
+    def test_ausente_es_una_falla(self):
+        self.assertEqual(self._run(None).failures, 1)
+
+    def test_no_diccionario_es_una_falla(self):
+        self.assertEqual(self._run("0.03").failures, 1)
+
+    def test_un_ajuste_desmedido_es_una_falla(self):
+        # 0.2 ya no es diferencia de aplastamiento: es un z_offset mal medido.
+        self.assertEqual(self._run("{'PETG': 0.2}").failures, 1)
+
+    def test_un_valor_no_numerico_es_una_falla(self):
+        self.assertEqual(self._run("{'PETG': 'alto'}").failures, 1)
+
+    def test_un_material_mal_escrito_avisa(self):
+        # En Klipper no falla: cae en 0 en silencio. Por eso lo dice check.
+        r = self._run("{'PETg': 0.03}")
+        self.assertEqual((r.failures, r.warnings), (0, 1))
+
+
 class TestMacrosCompilan(unittest.TestCase):
     """Todo cuerpo de gcode_macro tiene que ser una plantilla Jinja valida.
 

@@ -807,7 +807,38 @@ TPU_PROC = replace(
     ironing_type="no ironing",
 )
 
-PROCESSES = [FINE, STANDARD, STRONG, DRAFT, ABS_PROC, TPU_PROC]
+# 0.20mm PETG: el mismo Standard, con soportes que se puedan sacar y sin
+# planchado.
+#
+# La misma grieta que el de TPU, con otro mecanismo. El PETG no se estira: se
+# SUELDA. Se pega a si mismo mejor que cualquier otro material del repo, y con
+# los soportes de Standard -XY 0.35, interfaz casi solida abajo y arriba- el
+# soporte sale arrancando la cara inferior de la pieza, o no sale.
+#
+# LO QUE NO SE TOCA: la velocidad, que la gobierna el techo de caudal del
+# filamento (9 mm3/s), ni el hueco Z. Una capa de aire alcanza si la interfaz
+# se enfria rapido, y de eso se encarga el filamento con
+# support_material_interface_fan_speed al 100%. Si aun asi suelda, el paso
+# siguiente es 0.4 (dos capas), como en TPU, pagando cara inferior rugosa.
+PETG_PROC = replace(
+    STANDARD,
+    name="0.20mm PETG " + SUF,
+    # El PETG se ensancha y se fusiona de costado con 0.35.
+    support_object_xy_distance="0.6",
+    # Interfaz abierta: la mitad de contacto que la de Standard. Sigue
+    # sosteniendo la cara inferior, pero la union se quiebra en vez de
+    # desgarrar la pieza.
+    support_interface_spacing="0.4",
+    # Sin interfaz inferior: cuando el soporte arranca ENCIMA de la pieza, una
+    # interfaz densa ahi es una cara de PETG soldada sobre otra.
+    support_interface_bottom_layers="0",
+    # Sin planchado: el PETG se pega al nozzle, y el segundo pase levanta
+    # material y lo devuelve como grumos tostados sobre la cara superior que
+    # existia para quedar lisa.
+    ironing_type="no ironing",
+)
+
+PROCESSES = [FINE, STANDARD, STRONG, DRAFT, ABS_PROC, TPU_PROC, PETG_PROC]
 
 
 # ============================================================================
@@ -910,6 +941,12 @@ PETG = replace(
     close_fan_the_first_x_layers=("2",), full_fan_speed_layer=("4",),
     fan_min_speed=("40",), fan_max_speed=("60",), fan_cooling_layer_time=("25",),
     overhang_fan_speed=("70",), overhang_fan_threshold=("25%",),
+    # La interfaz de soporte al 100% y no al 40-60 del resto de la pieza. Es
+    # la mitad del arreglo de soportes del proceso 0.20mm PETG: con una sola
+    # capa de aire, lo que corta la soldadura es que la interfaz llegue fria
+    # cuando se apoya la pieza encima. Es clave de FILAMENTO y no de proceso,
+    # asi que vale tambien si alguien imprime PETG con soportes en Standard.
+    support_material_interface_fan_speed=("100",),
     slow_down_layer_time=("8",), slow_down_min_speed=("20",),
     filament_retraction_length=("0.8",), filament_retraction_speed=("30",),
     filament_deretraction_speed=("25",), filament_retract_before_wipe=("0%",),
@@ -919,7 +956,12 @@ PETG = replace(
                     "OJO con la chapa PEI del lado LISO: el PETG se suelda al PEI y arranca\n"
                     "pedazos de la lamina. Usar SIEMPRE stick de pegamento como separador\n"
                     "y despegar recien con la cama fria.\n"
-                    "Cama a 70, no subir mas. Primera capa menos aplastada que en PLA.\n"
+                    "Cama a 70, no subir mas.\n"
+                    "Proceso: 0.20mm PETG @EnderS1Pro (soportes que se despegan, sin planchado).\n"
+                    "Primera capa menos aplastada: START_PRINT sube el nozzle 0.03 mm solo\n"
+                    "(variable_z_adjust). No promover babysteps de PETG al probe.\n"
+                    "SECAR ANTES DE USAR: 65 grados, 4 a 6 h. Hilos, burbujas o superficie\n"
+                    "opaca son humedad antes que retraccion.\n"
                     "Caudal maximo 9 mm3/s. Pressure advance sugerido 0.06.",),
 )
 

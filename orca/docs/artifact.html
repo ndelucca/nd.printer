@@ -389,7 +389,7 @@ footer{
     <li><a href="#s2">Hardware detectado</a></li>
     <li><a href="#s3">Archivos</a></li>
     <li><a href="#s4">Perfil de impresora</a></li>
-    <li><a href="#s5">Los 6 procesos</a></li>
+    <li><a href="#s5">Los 7 procesos</a></li>
     <li><a href="#s6">Los 4 filamentos</a></li>
     <li><a href="#s7">Cómo Orca frena solo</a></li>
     <li><a href="#s8">Lo que falta medir</a></li>
@@ -514,7 +514,7 @@ footer{
   <ul>
     <li>Se eliminó el bundle importado <code>user\default\_local\49ea5240-…\</code>, que contenía el filamento suelto <code>Printalot PLA @Klipper</code>.</li>
     <li>Los filamentos genéricos de sistema visibles bajaron de 10 a 4: solo PLA, PETG, ABS y TPU, que son los padres de los perfiles Printalot.</li>
-    <li>Los 6 procesos y los 4 filamentos declaran <code>compatible_printers: ["EnderS1ProKlipper"]</code>, así que <strong>no aparecen si seleccionás otra impresora</strong>.</li>
+    <li>Los 7 procesos y los 4 filamentos declaran <code>compatible_printers: ["EnderS1ProKlipper"]</code>, así que <strong>no aparecen si seleccionás otra impresora</strong>.</li>
   </ul>
 
   <h3>Repositorio</h3>
@@ -601,29 +601,29 @@ END_PRINT</pre></div>
 
 <!-- ================= 5 ================= -->
 <section id="s5">
-  <h2><span class="num">05</span>Los 6 procesos</h2>
+  <h2><span class="num">05</span>Los 7 procesos</h2>
   <div class="rule"></div>
-  <p>El <strong>proceso define la geometría y la ambición de velocidad</strong>; el <strong>filamento pone el techo de caudal</strong>. Casi no hay procesos por material: eso lo resuelve solo Orca. Las excepciones son el ABS y el TPU.</p>
+  <p>El <strong>proceso define la geometría y la ambición de velocidad</strong>; el <strong>filamento pone el techo de caudal</strong>. Casi no hay procesos por material: eso lo resuelve solo Orca. Las excepciones son el ABS, el TPU y el PETG.</p>
 
   <div class="tblwrap"><table>
-    <colgroup><col><col><col class="hl"><col><col><col><col></colgroup>
-    <thead><tr><th></th><th class="n">Fine</th><th class="n">Standard</th><th class="n">Strong</th><th class="n">Draft</th><th class="n">ABS</th><th class="n">TPU</th></tr></thead>
+    <colgroup><col><col><col class="hl"><col><col><col><col><col></colgroup>
+    <thead><tr><th></th><th class="n">Fine</th><th class="n">Standard</th><th class="n">Strong</th><th class="n">Draft</th><th class="n">ABS</th><th class="n">TPU</th><th class="n">PETG</th></tr></thead>
     <tbody>
-      <tr><td>Altura de capa</td><td class="n">0.12</td><td class="n">0.20</td><td class="n">0.20</td><td class="n">0.28</td><td class="n">0.20</td><td class="n">0.20</td></tr>
-      <tr><td>Perímetros</td><td class="n">2</td><td class="n">3</td><td class="n">4</td><td class="n">2</td><td class="n">3</td><td class="n">3</td></tr>
-      <tr><td>Relleno</td><td class="n">15 % gyroid</td><td class="n">15 % gyroid</td><td class="n">40 % cubic</td><td class="n">10 % gyroid</td><td class="n">15 % gyroid</td><td class="n">15 % gyroid</td></tr>
-      <tr><td>Techo superior</td><td class="n">0.84 mm</td><td class="n">0.80 mm</td><td class="n">1.00 mm</td><td class="n">0.84 mm</td><td class="n">0.80 mm</td><td class="n">0.80 mm</td></tr>
-      <tr><td>Base</td><td class="n">0.60 mm</td><td class="n">0.60 mm</td><td class="n">0.80 mm</td><td class="n">0.56 mm</td><td class="n">0.60 mm</td><td class="n">0.60 mm</td></tr>
-      <tr><td>Pared exterior</td><td class="n">45 mm/s</td><td class="n">50 mm/s</td><td class="n">50 mm/s</td><td class="n">50 mm/s</td><td class="n">50 mm/s</td><td class="n">50 mm/s</td></tr>
-      <tr><td>Pared interior</td><td class="n">120 mm/s</td><td class="n">110 mm/s</td><td class="n">100 mm/s</td><td class="n">80 mm/s</td><td class="n">110 mm/s</td><td class="n">110 mm/s</td></tr>
-      <tr><td>Relleno disperso</td><td class="n">140 mm/s</td><td class="n">110 mm/s</td><td class="n">110 mm/s</td><td class="n">75 mm/s</td><td class="n">110 mm/s</td><td class="n">110 mm/s</td></tr>
-      <tr><td>Relleno sólido</td><td class="n">130 mm/s</td><td class="n">115 mm/s</td><td class="n">110 mm/s</td><td class="n">80 mm/s</td><td class="n">115 mm/s</td><td class="n">115 mm/s</td></tr>
-      <tr><td>Superficie superior</td><td class="n">40 mm/s</td><td class="n">45 mm/s</td><td class="n">45 mm/s</td><td class="n">45 mm/s</td><td class="n">45 mm/s</td><td class="n">45 mm/s</td></tr>
-      <tr><td>Caudal pico</td><td class="n">7.6 mm³/s</td><td class="n">9.9 mm³/s</td><td class="n">9.9 mm³/s</td><td class="n">10.8 mm³/s</td><td class="n">9.9 mm³/s</td><td class="n">9.9 mm³/s</td></tr>
-      <tr><td>Planchado</td><td class="n">sí</td><td class="n">sí</td><td class="n">no</td><td class="n">no</td><td class="n">no</td><td class="n">no</td></tr>
-      <tr><td>Brim</td><td class="n">auto</td><td class="n">auto</td><td class="n">auto</td><td class="n">auto</td><td class="n">outer_only 8 mm</td><td class="n">auto</td></tr>
-      <tr><td>Draft shield</td><td class="n">no</td><td class="n">no</td><td class="n">no</td><td class="n">no</td><td class="n">sí</td><td class="n">no</td></tr>
-      <tr><td>Soportes: hueco Z / XY</td><td class="n">0.24 / 0.35</td><td class="n">0.20 / 0.35</td><td class="n">0.20 / 0.35</td><td class="n">0.28 / 0.35</td><td class="n">0.20 / 0.35</td><td class="n">0.40 / 0.60</td></tr>
+      <tr><td>Altura de capa</td><td class="n">0.12</td><td class="n">0.20</td><td class="n">0.20</td><td class="n">0.28</td><td class="n">0.20</td><td class="n">0.20</td><td class="n">0.20</td></tr>
+      <tr><td>Perímetros</td><td class="n">2</td><td class="n">3</td><td class="n">4</td><td class="n">2</td><td class="n">3</td><td class="n">3</td><td class="n">3</td></tr>
+      <tr><td>Relleno</td><td class="n">15 % gyroid</td><td class="n">15 % gyroid</td><td class="n">40 % cubic</td><td class="n">10 % gyroid</td><td class="n">15 % gyroid</td><td class="n">15 % gyroid</td><td class="n">15 % gyroid</td></tr>
+      <tr><td>Techo superior</td><td class="n">0.84 mm</td><td class="n">0.80 mm</td><td class="n">1.00 mm</td><td class="n">0.84 mm</td><td class="n">0.80 mm</td><td class="n">0.80 mm</td><td class="n">0.80 mm</td></tr>
+      <tr><td>Base</td><td class="n">0.60 mm</td><td class="n">0.60 mm</td><td class="n">0.80 mm</td><td class="n">0.56 mm</td><td class="n">0.60 mm</td><td class="n">0.60 mm</td><td class="n">0.60 mm</td></tr>
+      <tr><td>Pared exterior</td><td class="n">45 mm/s</td><td class="n">50 mm/s</td><td class="n">50 mm/s</td><td class="n">50 mm/s</td><td class="n">50 mm/s</td><td class="n">50 mm/s</td><td class="n">50 mm/s</td></tr>
+      <tr><td>Pared interior</td><td class="n">120 mm/s</td><td class="n">110 mm/s</td><td class="n">100 mm/s</td><td class="n">80 mm/s</td><td class="n">110 mm/s</td><td class="n">110 mm/s</td><td class="n">110 mm/s</td></tr>
+      <tr><td>Relleno disperso</td><td class="n">140 mm/s</td><td class="n">110 mm/s</td><td class="n">110 mm/s</td><td class="n">75 mm/s</td><td class="n">110 mm/s</td><td class="n">110 mm/s</td><td class="n">110 mm/s</td></tr>
+      <tr><td>Relleno sólido</td><td class="n">130 mm/s</td><td class="n">115 mm/s</td><td class="n">110 mm/s</td><td class="n">80 mm/s</td><td class="n">115 mm/s</td><td class="n">115 mm/s</td><td class="n">115 mm/s</td></tr>
+      <tr><td>Superficie superior</td><td class="n">40 mm/s</td><td class="n">45 mm/s</td><td class="n">45 mm/s</td><td class="n">45 mm/s</td><td class="n">45 mm/s</td><td class="n">45 mm/s</td><td class="n">45 mm/s</td></tr>
+      <tr><td>Caudal pico</td><td class="n">7.6 mm³/s</td><td class="n">9.9 mm³/s</td><td class="n">9.9 mm³/s</td><td class="n">10.8 mm³/s</td><td class="n">9.9 mm³/s</td><td class="n">9.9 mm³/s</td><td class="n">9.9 mm³/s</td></tr>
+      <tr><td>Planchado</td><td class="n">sí</td><td class="n">sí</td><td class="n">no</td><td class="n">no</td><td class="n">no</td><td class="n">no</td><td class="n">no</td></tr>
+      <tr><td>Brim</td><td class="n">auto</td><td class="n">auto</td><td class="n">auto</td><td class="n">auto</td><td class="n">outer_only 8 mm</td><td class="n">auto</td><td class="n">auto</td></tr>
+      <tr><td>Draft shield</td><td class="n">no</td><td class="n">no</td><td class="n">no</td><td class="n">no</td><td class="n">sí</td><td class="n">no</td><td class="n">no</td></tr>
+      <tr><td>Soportes: hueco Z / XY</td><td class="n">0.24 / 0.35</td><td class="n">0.20 / 0.35</td><td class="n">0.20 / 0.35</td><td class="n">0.28 / 0.35</td><td class="n">0.20 / 0.35</td><td class="n">0.40 / 0.60</td><td class="n">0.20 / 0.60</td></tr>
     </tbody>
   </table></div>
 
@@ -635,6 +635,7 @@ END_PRINT</pre></div>
     <li><strong>0.28mm Draft</strong> · prototipos y piezas grandes. Acá el límite es el caudal del hotend: a 0.28 de capa cada milímetro de recorrido mueve mucho más plástico, así que las velocidades bajan aunque el tiempo total mejore mucho.</li>
     <li><strong>0.20mm ABS</strong> · Standard con lo que el ABS necesita para sobrevivir a una impresora <strong>sin encerramiento</strong>.</li>
     <li><strong>0.20mm TPU</strong> · Standard con soportes que se pueden despegar de un flexible.</li>
+    <li><strong>0.20mm PETG</strong> · Standard con soportes que no se sueldan y sin planchado.</li>
   </ul>
 
   <h3>Por qué el TPU también tiene su propio proceso</h3>
@@ -650,6 +651,19 @@ END_PRINT</pre></div>
     </tbody>
   </table></div>
   <p>El costo es una cara inferior más rugosa en los voladizos. La velocidad no se toca: la sigue gobernando el techo de caudal del filamento.</p>
+
+  <h3>Por qué el PETG también tiene su propio proceso</h3>
+  <p>La misma grieta que el TPU, con otro mecanismo: el PETG no se estira, <strong>se suelda</strong>. Se pega a sí mismo mejor que cualquier otro material del repo, y con los soportes de Standard el soporte sale arrancando la cara inferior de la pieza, o no sale.</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Clave</th><th class="n">Standard</th><th class="n">PETG</th><th>Por qué</th></tr></thead>
+    <tbody>
+      <tr><td><code>support_object_xy_distance</code></td><td class="n">0.35</td><td class="n">0.60</td><td>El PETG se ensancha y se fusiona de costado</td></tr>
+      <tr><td><code>support_interface_spacing</code></td><td class="n">0.2</td><td class="n">0.4</td><td>Interfaz abierta: la unión se quiebra en vez de desgarrar la pieza</td></tr>
+      <tr><td><code>support_interface_bottom_layers</code></td><td class="n">2</td><td class="n">0</td><td>Una interfaz densa sobre la pieza es PETG soldado sobre PETG</td></tr>
+      <tr><td><code>ironing_type</code></td><td class="n">planchado</td><td class="n">no</td><td>El PETG se pega al nozzle y el segundo pase deja grumos tostados</td></tr>
+    </tbody>
+  </table></div>
+  <p>El hueco Z se queda en <strong>una capa</strong> (0.20). Lo que corta la soldadura ahí es que la interfaz llegue fría, y de eso se encarga el <strong>filamento</strong>: <code>support_material_interface_fan_speed</code> al 100 %, contra el 40-60 % del resto de la pieza. Si aun así suelda, el paso siguiente es 0.40, como en TPU.</p>
 
   <h3>Por qué el ABS sí necesita su propio proceso</h3>
   <p>Es la excepción a la regla de "el filamento resuelve el material solo", y no por gusto: <strong><code>brim_type</code> y <code>draft_shield</code> son claves de proceso, y en OrcaSlicer un filamento no puede pisar una clave de proceso.</strong> Las notas del filamento ABS decían "Obligatorio en el proceso: Brim outer_only 8mm". O sea que la fuente de verdad documentaba un paso manual en la UI, sin verificación posible, para el único material donde los defaults del proceso están realmente mal.</p>
@@ -742,6 +756,13 @@ END_PRINT</pre></div>
     <p>Usá <strong>siempre stick de pegamento</strong> como separador, y despegá la pieza recién cuando la cama esté fría.</p>
     <p>La cama está a 70 a propósito: cuanto más caliente, más se suelda. Si te despega en una esquina, sumá brim antes de subir temperatura.</p>
   </div>
+  <p>Proceso: <code>0.20mm PETG @EnderS1Pro</code>.</p>
+  <p><strong>Primera capa menos aplastada, sin tocar el probe.</strong> El <code>z_offset</code> es uno solo y está calibrado con PLA. <code>START_PRINT</code> tiene una tabla <code>variable_z_adjust</code> por material, hermana de <code>variable_pa</code>, que se suma al <code>z_offset</code>: PETG va <strong>+0.03 mm</strong>, el resto 0. Es punto de partida: se afina con la línea de purga, que tiene que verse redondeada arriba, no plana y translúcida.</p>
+  <div class="note warn">
+    <span class="tag">No promuevas babysteps de PETG</span>
+    <p><code>Z_OFFSET_APPLY_PROBE</code> toma el offset total, ajuste incluido, y el 0.03 quedaría sumado dos veces. El <code>z_offset</code> del probe se afina con PLA.</p>
+  </div>
+  <p><strong>Secado.</strong> El PETG absorbe humedad, y un rollo húmedo da hilos, burbujas y superficie opaca que se confunden con un problema de retracción. Secalo a 65 grados durante 4 a 6 horas antes de tocar la retracción.</p>
 
   <h3>ABS, sin encerramiento</h3>
   <p>El ventilador está prácticamente apagado, 0 a 15 %, porque sin caja el ABS delamina si lo enfriás. Para que funcione:</p>
@@ -796,6 +817,7 @@ END_PRINT</pre></div>
       <tr><td>0.28mm Draft</td><td class="n">10.8</td><td class="n"><span class="chip slow">frena</span></td><td class="n"><span class="chip slow">frena</span></td><td class="n"><span class="chip slow">frena</span></td><td class="n"><span class="chip slow">frena</span></td></tr>
       <tr><td>0.20mm ABS</td><td class="n">9.9</td><td class="n"><span class="chip ok">ok</span></td><td class="n"><span class="chip slow">frena</span></td><td class="n"><span class="chip ok">ok</span></td><td class="n"><span class="chip slow">frena</span></td></tr>
       <tr><td>0.20mm TPU</td><td class="n">9.9</td><td class="n"><span class="chip ok">ok</span></td><td class="n"><span class="chip slow">frena</span></td><td class="n"><span class="chip ok">ok</span></td><td class="n"><span class="chip slow">frena</span></td></tr>
+      <tr><td>0.20mm PETG</td><td class="n">9.9</td><td class="n"><span class="chip ok">ok</span></td><td class="n"><span class="chip slow">frena</span></td><td class="n"><span class="chip ok">ok</span></td><td class="n"><span class="chip slow">frena</span></td></tr>
     </tbody>
   </table></div>
   <p><span class="chip slow">frena</span> no es un error: es el sistema funcionando. Significa que el proceso pide más caudal del que ese material tolera y Orca lo ajusta solo.</p>
@@ -838,7 +860,8 @@ END_PRINT</pre></div>
      PROBE_CALIBRATE -> TESTZ Z=-0.05 ... -> ACCEPT -> SAVE_CONFIG
      O babystepear durante una primera capa y promoverlo despues con
      Z_OFFSET_APPLY_PROBE + SAVE_CONFIG. Un babystep suelto NO sobrevive:
-     START_PRINT hace SET_GCODE_OFFSET Z=0.
+     START_PRINT resetea el offset al ajuste del material. Promover SOLO
+     desde una impresion de PLA: en PETG el total ya trae +0.03.
 
  A4. TORRE DE RINGING                                     ~20 min
      OrcaSlicer -&gt; Calibration -&gt; Input Shaper (la torre, no el ADXL)
@@ -980,7 +1003,7 @@ END_PRINT</pre></div>
  |
  +-- orca/                      EL LAMINADOR
  |   +-- orca.py                    CLI: where build install verify audit check
- |   +-- orcakit/profiles.py       FUENTE DE VERDAD: los 10 perfiles
+ |   +-- orcakit/profiles.py       FUENTE DE VERDAD: los 12 perfiles
  |   +-- orcakit/presets.py        la forma de un preset (dataclasses, sin valores)
  |   +-- orcakit/snapshot.py       construcción y comparación de presets/
  |   +-- orcakit/values.py         los valores de texto de Orca y Klipper, a números

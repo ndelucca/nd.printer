@@ -271,13 +271,13 @@ medido y no de uno de fábrica.
  orca/
    orca.py              CLI unico
    orcakit/             el toolkit: perfiles, validaciones y parsers
-   orcakit/profiles.py  fuente de verdad de los 10 perfiles
+   orcakit/profiles.py  fuente de verdad de los 12 perfiles
    presets/             snapshot versionado, generado
    tests/               unittest de la stdlib, sin dependencias
    docs/                el porque de cada valor
 ```
 
-Un perfil de impresora, seis procesos y cuatro filamentos de Printalot,
+Un perfil de impresora, siete procesos y cuatro filamentos de Printalot,
 calibrados contra esta máquina en particular. Ver `orca/README.md` para el
 detalle y `orca/docs/` para el razonamiento detrás de cada número.
 

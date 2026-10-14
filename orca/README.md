@@ -3,8 +3,8 @@
 Configuración reproducible de OrcaSlicer para una **Ender 3 S1 Pro** con
 **Klipper** sobre Raspberry Pi 3B+, nozzle 0.4 y filamentos **Printalot**.
 
-Clonás el repo, corrés un comando, y tenés exactamente los mismos 10 perfiles:
-una impresora, seis procesos y cuatro filamentos.
+Clonás el repo, corrés un comando, y tenés exactamente los mismos 12 perfiles:
+una impresora, siete procesos y cuatro filamentos.
 
 - Documentación completa del *por qué* de cada valor: [`docs/orcaslicer-ender3s1pro-klipper.md`](docs/orcaslicer-ender3s1pro-klipper.md)
 - Sin dependencias: solo la librería estándar de Python 3.14
@@ -90,7 +90,7 @@ pueden separar sin darse cuenta.
  +-- orca.py                    CLI: where / build / install / verify / audit / check
  |
  +-- orcakit/                   el toolkit
- |   +-- profiles.py            FUENTE DE VERDAD: los 10 perfiles y sus comentarios
+ |   +-- profiles.py            FUENTE DE VERDAD: los 12 perfiles y sus comentarios
  |   +-- presets.py             la forma de un preset: las dataclasses, sin valores
  |   +-- snapshot.py            construccion y comparacion de presets/
  |   +-- values.py              los valores de texto de Orca y Klipper, a numeros

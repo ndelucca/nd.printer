@@ -348,6 +348,7 @@ class Filament(_Serializable):
     fan_cooling_layer_time: SettingList = None
     overhang_fan_speed: SettingList = None
     overhang_fan_threshold: SettingList = None
+    support_material_interface_fan_speed: SettingList = None
     slow_down_layer_time: SettingList = None
     slow_down_min_speed: SettingList = None
     pressure_advance: SettingList = None

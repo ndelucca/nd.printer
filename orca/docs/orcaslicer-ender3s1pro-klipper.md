@@ -6,7 +6,7 @@ Raspberry Pi 3B+, con nozzle estándar de 0.4 mm y filamentos Printalot.
 - **Fecha**: 2026-08-26
 - **OrcaSlicer**: 2.4.2
 - **Host de impresión**: Moonraker / Mainsail (la URL es local, ver `.printer-host`)
-- **Perfiles**: 1 impresora, 6 procesos, 4 filamentos
+- **Perfiles**: 1 impresora, 7 procesos, 4 filamentos
 
 ---
 
@@ -111,6 +111,7 @@ Todo vive en `%APPDATA%\OrcaSlicer\user\default\`.
      |   +-- 0.28mm Draft @EnderS1Pro.json
      |   +-- 0.20mm ABS @EnderS1Pro.json
      |   +-- 0.20mm TPU @EnderS1Pro.json
+     |   +-- 0.20mm PETG @EnderS1Pro.json
      |   +-- (un .info por cada uno)
      |
      +-- filament\
@@ -147,7 +148,7 @@ OrcaSlicer.
   contenía el filamento suelto `Printalot PLA @Klipper`.
 - Los filamentos genéricos de sistema visibles bajaron de 10 a 4 (se dejaron
   solo PLA, PETG, ABS y TPU, que son los padres de los perfiles Printalot).
-- Los 6 procesos y los 4 filamentos declaran `compatible_printers:
+- Los 7 procesos y los 4 filamentos declaran `compatible_printers:
   ["EnderS1ProKlipper"]`, así que **no aparecen si seleccionás otra impresora**.
 
 ### Repositorio
@@ -406,32 +407,32 @@ la cola de impresión en vez de un ícono genérico.
 
 ---
 
-## 5. Los 6 procesos
+## 5. Los 7 procesos
 
 La idea es que el **proceso define la geometría y la ambición de velocidad**, y
 el **filamento pone el techo de caudal**. Casi no hay procesos por material:
-eso lo resuelve solo Orca (ver sección 7). Las excepciones son el ABS y el TPU,
-y más abajo está el porqué.
+eso lo resuelve solo Orca (ver sección 7). Las excepciones son el ABS, el TPU y
+el PETG, y más abajo está el porqué.
 
-| | Fine | **Standard** | Strong | Draft | ABS | TPU |
-|---|---|---|---|---|---|---|
-| Altura de capa | 0.12 | **0.20** | 0.20 | 0.28 | 0.20 | 0.20 |
-| Perímetros | 2 | **3** | 4 | 2 | 3 | 3 |
-| Relleno | 15% gyroid | **15% gyroid** | 40% cubic | 10% gyroid | 15% gyroid | 15% gyroid |
-| Techo superior | 0.84 mm | **0.80 mm** | 1.00 mm | 0.84 mm | 0.80 mm | 0.80 mm |
-| Base | 0.60 mm | **0.60 mm** | 0.80 mm | 0.56 mm | 0.60 mm | 0.60 mm |
-| Pared exterior | 45 mm/s | **50 mm/s** | 50 mm/s | 50 mm/s | 50 mm/s | 50 mm/s |
-| Pared interior | 120 mm/s | **110 mm/s** | 100 mm/s | 80 mm/s | 110 mm/s | 110 mm/s |
-| Relleno disperso | 140 mm/s | **110 mm/s** | 110 mm/s | 75 mm/s | 110 mm/s | 110 mm/s |
-| Relleno sólido | 130 mm/s | **115 mm/s** | 110 mm/s | 80 mm/s | 115 mm/s | 115 mm/s |
-| Superficie superior | 40 mm/s | **45 mm/s** | 45 mm/s | 45 mm/s | 45 mm/s | 45 mm/s |
-| Caudal pedido | 7.6 mm3/s | **9.9 mm3/s** | 9.9 mm3/s | 10.8 mm3/s | 9.9 mm3/s | 9.9 mm3/s |
-| Costura scarf | sí | **sí** | sí | no | sí | sí |
-| Planchado | sí | **sí** | no | no | no | no |
-| Orden de paredes | normal | **normal** | inner-outer-inner | normal | normal | normal |
-| Brim | auto | **auto** | auto | auto | outer_only 8 mm | auto |
-| Draft shield | no | **no** | no | no | sí | no |
-| Soportes: hueco Z / XY | 0.24 / 0.35 | **0.20 / 0.35** | 0.20 / 0.35 | 0.28 / 0.35 | 0.20 / 0.35 | 0.40 / 0.60 |
+| | Fine | **Standard** | Strong | Draft | ABS | TPU | PETG |
+|---|---|---|---|---|---|---|---|
+| Altura de capa | 0.12 | **0.20** | 0.20 | 0.28 | 0.20 | 0.20 | 0.20 |
+| Perímetros | 2 | **3** | 4 | 2 | 3 | 3 | 3 |
+| Relleno | 15% gyroid | **15% gyroid** | 40% cubic | 10% gyroid | 15% gyroid | 15% gyroid | 15% gyroid |
+| Techo superior | 0.84 mm | **0.80 mm** | 1.00 mm | 0.84 mm | 0.80 mm | 0.80 mm | 0.80 mm |
+| Base | 0.60 mm | **0.60 mm** | 0.80 mm | 0.56 mm | 0.60 mm | 0.60 mm | 0.60 mm |
+| Pared exterior | 45 mm/s | **50 mm/s** | 50 mm/s | 50 mm/s | 50 mm/s | 50 mm/s | 50 mm/s |
+| Pared interior | 120 mm/s | **110 mm/s** | 100 mm/s | 80 mm/s | 110 mm/s | 110 mm/s | 110 mm/s |
+| Relleno disperso | 140 mm/s | **110 mm/s** | 110 mm/s | 75 mm/s | 110 mm/s | 110 mm/s | 110 mm/s |
+| Relleno sólido | 130 mm/s | **115 mm/s** | 110 mm/s | 80 mm/s | 115 mm/s | 115 mm/s | 115 mm/s |
+| Superficie superior | 40 mm/s | **45 mm/s** | 45 mm/s | 45 mm/s | 45 mm/s | 45 mm/s | 45 mm/s |
+| Caudal pedido | 7.6 mm3/s | **9.9 mm3/s** | 9.9 mm3/s | 10.8 mm3/s | 9.9 mm3/s | 9.9 mm3/s | 9.9 mm3/s |
+| Costura scarf | sí | **sí** | sí | no | sí | sí | sí |
+| Planchado | sí | **sí** | no | no | no | no | no |
+| Orden de paredes | normal | **normal** | inner-outer-inner | normal | normal | normal | normal |
+| Brim | auto | **auto** | auto | auto | outer_only 8 mm | auto | auto |
+| Draft shield | no | **no** | no | no | sí | no | no |
+| Soportes: hueco Z / XY | 0.24 / 0.35 | **0.20 / 0.35** | 0.20 / 0.35 | 0.28 / 0.35 | 0.20 / 0.35 | 0.40 / 0.60 | 0.20 / 0.60 |
 
 **Para qué es cada uno:**
 
@@ -450,6 +451,8 @@ y más abajo está el porqué.
   impresora **sin encerramiento**. Ver abajo.
 - **0.20mm TPU** - Standard con soportes que se pueden despegar de un
   flexible. Ver abajo.
+- **0.20mm PETG** - Standard con soportes que no se sueldan y sin planchado.
+  Ver abajo.
 
 ### Por qué el ABS sí necesita su propio proceso
 
@@ -587,6 +590,27 @@ elástico, no se quiebra en la unión como el PLA, se estira.
 El costo es una cara inferior más rugosa en los voladizos. La velocidad no se
 toca: la sigue gobernando el techo de caudal del filamento.
 
+### Por qué el PETG también tiene su propio proceso
+
+La misma grieta que el TPU, con otro mecanismo: el PETG no se estira, **se
+suelda**. Se pega a sí mismo mejor que cualquier otro material del repo, y con
+los soportes de Standard el soporte sale arrancando la cara inferior de la
+pieza, o no sale.
+
+| Clave | Standard | PETG | Por qué |
+|---|---|---|---|
+| `support_object_xy_distance` | 0.35 | 0.60 | El PETG se ensancha y se fusiona de costado |
+| `support_interface_spacing` | 0.2 | 0.4 | Interfaz abierta: la unión se quiebra en vez de desgarrar la pieza |
+| `support_interface_bottom_layers` | 2 | 0 | Una interfaz densa sobre la pieza es PETG soldado sobre PETG |
+| `ironing_type` | planchado | no | El PETG se pega al nozzle y el segundo pase deja grumos tostados |
+
+El hueco Z se queda en **una capa** (0.20). Lo que corta la soldadura ahí es que
+la interfaz llegue fría cuando se apoya la pieza encima, y de eso se encarga el
+**filamento**: `support_material_interface_fan_speed` al 100%, contra el 40-60%
+del resto de la pieza. Como es clave de filamento, vale también si alguien
+imprime PETG con soportes en Standard. Si aun así suelda, el paso siguiente es
+0.40 (dos capas), como en TPU, pagando una cara inferior más rugosa.
+
 ## 6. Los 4 filamentos
 
 | | PLA | PETG | ABS | TPU Flex |
@@ -650,6 +674,31 @@ en tiempo absoluto es casi nada.
 >
 > La cama está a 70 a propósito. No la subas: cuanto más caliente, más se suelda.
 > Si te despega en una esquina, sumá brim antes de subir temperatura.
+
+Proceso: `0.20mm PETG @EnderS1Pro` (ver sección 5).
+
+**Primera capa menos aplastada, sin tocar el probe.** El `z_offset` es uno solo
+y está calibrado con PLA, que quiere ir aplastado. El PETG aplastado igual
+arrastra material con el nozzle, deja gotas y se suelda todavía más al PEI.
+`START_PRINT` tiene una tabla `variable_z_adjust` por material, hermana de
+`variable_pa`, que se suma al `z_offset` del probe:
+
+```
+ PLA 0.00   PETG +0.03   ABS 0.00   TPU 0.00      (mm, positivo = más alto)
+```
+
+El 0.03 es punto de partida: se afina con la línea de purga de una impresión de
+PETG, que tiene que verse redondeada arriba, no plana y translúcida. `check`
+valida la forma de la tabla (valores numéricos, menores a 0.1, claves que sean
+materiales que existen).
+
+> **No promuevas babysteps de una impresión de PETG** con
+> `Z_OFFSET_APPLY_PROBE`: toma el offset total, ajuste incluido, y el 0.03
+> quedaría sumado dos veces. El `z_offset` del probe se afina con PLA.
+
+**Secado.** El PETG absorbe humedad, y un rollo húmedo da hilos, burbujas y
+superficie opaca que se confunden con un problema de retracción. Secalo a 65
+grados durante 4 a 6 horas antes de tocar la retracción.
 
 **ABS - sin encerramiento**
 
@@ -769,6 +818,7 @@ Contraste completo de los procesos contra los materiales:
  0.28mm Draft        frena     frena     frena     frena    10.8
  0.20mm ABS            ok      frena       ok      frena     9.9
  0.20mm TPU            ok      frena       ok      frena     9.9
+ 0.20mm PETG           ok      frena       ok      frena     9.9
 ```
 
 "frena" no es un error: es el sistema funcionando. Significa que el proceso pide
@@ -826,7 +876,10 @@ calibrar el flujo significa recalibrar el flujo.
      O, si ya imprime bien y solo hay que afinar: babystepear durante una
      primera capa hasta que quede, y despues promoverlo con
          Z_OFFSET_APPLY_PROBE + SAVE_CONFIG
-     Un babystep suelto NO sobrevive: START_PRINT hace SET_GCODE_OFFSET Z=0.
+     Un babystep suelto NO sobrevive: START_PRINT resetea el offset en cada
+     impresion, al ajuste de Z del material (variable_z_adjust).
+     OJO: promover SOLO desde una impresion de PLA. Z_OFFSET_APPLY_PROBE toma
+     el offset total, y en PETG ese total ya trae +0.03 de la tabla.
 
  A4. TORRE DE RINGING                                     ~20 min
      OrcaSlicer -> Calibration -> Input Shaper (la torre, no el ADXL)
@@ -1062,7 +1115,7 @@ Todo vive en el repositorio git `~/nd.printer`, que tiene las dos mitades:
  |
  +-- orca/                      EL LAMINADOR
  |   +-- orca.py                    CLI: where build install verify audit check
- |   +-- orcakit/profiles.py       FUENTE DE VERDAD: los 10 perfiles
+ |   +-- orcakit/profiles.py       FUENTE DE VERDAD: los 12 perfiles
  |   +-- orcakit/presets.py        la forma de un preset (dataclasses, sin valores)
  |   +-- orcakit/snapshot.py       construccion y comparacion de presets/
  |   +-- orcakit/values.py         los valores de texto de Orca y Klipper, a numeros
