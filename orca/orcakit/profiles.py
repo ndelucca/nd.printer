@@ -956,7 +956,10 @@ TPU = replace(
     **_plates(45, 45),
     filament_density=("1.21",), filament_cost=("45",),
     filament_flow_ratio=("1",), filament_max_volumetric_speed=("3.5",),
-    nozzle_temperature=("230",), nozzle_temperature_initial_layer=("230",),
+    # 220 y no 230. Con un techo de 3.5 mm3/s el material pasa mucho tiempo
+    # en el bloque, y a 230 -el tope del rango- salia tan fluido que goteaba
+    # en cada travel: rebarbas y gotas sobre la pared.
+    nozzle_temperature=("220",), nozzle_temperature_initial_layer=("225",),
     nozzle_temperature_range_low=("210",), nozzle_temperature_range_high=("240",),
     temperature_vitrification=("60",),
     close_fan_the_first_x_layers=("1",), full_fan_speed_layer=("2",),
@@ -964,16 +967,21 @@ TPU = replace(
     overhang_fan_speed=("80",), overhang_fan_threshold=("25%",),
     slow_down_layer_time=("6",), slow_down_min_speed=("10",),
     filament_retraction_length=("0.4",), filament_retraction_speed=("20",),
-    filament_deretraction_speed=("20",), filament_retraction_minimum_travel=("3",),
+    filament_deretraction_speed=("20",), filament_retraction_minimum_travel=("2",),
     filament_retract_when_changing_layer=("0",), filament_z_hop=("0",),
     filament_wipe=("0",), filament_retract_before_wipe=("0%",),
-    pressure_advance=("0.6",),
+    # 0.1 y no 0.6. 0.6 es un numero de Bowden: el Sprite es direct drive, y
+    # ahi el TPU anda entre 0.05 y 0.2. Con 0.6 el extrusor empujaba de mas al
+    # arrancar cada linea (gota), retraia de mas al frenar (hueco) y en las
+    # curvas -muchos tramos cortos- iba y venia sin parar. Es un punto de
+    # partida: el numero real sale de Calibration -> Pressure Advance.
+    pressure_advance=("0.1",),
     filament_notes=("Printalot Flex / TPU (shore ~95A) - 1.75mm\n"
                     "El caudal maximo de 3.5 mm3/s es el que manda: Orca frena todas las\n"
                     "velocidades solo. No hace falta un proceso distinto.\n"
                     "Retraccion minima (0.4mm) y sin z-hop para que no se trabe el Sprite.\n"
                     "Cargar el filamento a mano, despacio, con el extrusor caliente.\n"
-                    "Pressure advance sugerido 0.6 (el TPU necesita valores altos).",),
+                    "Pressure advance 0.1 de partida (direct drive): calibrarlo con este rollo.",),
 )
 
 

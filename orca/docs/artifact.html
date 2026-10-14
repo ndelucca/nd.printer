@@ -701,8 +701,8 @@ END_PRINT</pre></div>
   <div class="tblwrap"><table>
     <thead><tr><th></th><th class="n">PLA</th><th class="n">PETG</th><th class="n">ABS</th><th class="n">TPU Flex</th></tr></thead>
     <tbody>
-      <tr><td>Nozzle</td><td class="n">215</td><td class="n">240</td><td class="n">255</td><td class="n">230</td></tr>
-      <tr><td>Primera capa</td><td class="n">220</td><td class="n">245</td><td class="n">260</td><td class="n">230</td></tr>
+      <tr><td>Nozzle</td><td class="n">215</td><td class="n">240</td><td class="n">255</td><td class="n">220</td></tr>
+      <tr><td>Primera capa</td><td class="n">220</td><td class="n">245</td><td class="n">260</td><td class="n">225</td></tr>
       <tr><td>Cama</td><td class="n">60</td><td class="n">70</td><td class="n">100</td><td class="n">45</td></tr>
       <tr><td>Rango sugerido</td><td class="n">190–230</td><td class="n">220–260</td><td class="n">230–270</td><td class="n">210–240</td></tr>
       <tr><td>Caudal máximo</td><td class="n">10 mm³/s</td><td class="n">9 mm³/s</td><td class="n">10 mm³/s</td><td class="n">3.5 mm³/s</td></tr>
@@ -745,7 +745,7 @@ END_PRINT</pre></div>
  Z hop                                 desactivado
  Retraer al cambiar de capa            no
  Wipe                                  desactivado
- Desplazamiento mínimo para retraer    3 mm</pre></div>
+ Desplazamiento mínimo para retraer    2 mm</pre></div>
   <p>Cargá el filamento a mano, despacio, con el extrusor ya caliente. El TPU se dobla dentro del engranaje si lo empujás con el motor.</p>
 </section>
 
@@ -845,7 +845,7 @@ END_PRINT</pre></div>
 
  B4. PRESSURE ADVANCE                   &lt;- el de mas impacto visual
      Lo pone KLIPPER: la tabla variable_pa del macro START_PRINT.
-       PLA 0.04   PETG 0.06   ABS 0.05   TPU 0.6
+       PLA 0.04   PETG 0.06   ABS 0.05   TPU 0.1
      Cambiar EN LOS DOS LADOS (variable_pa y pressure_advance del
      filamento). orca.py check falla si quedan distintos.
 

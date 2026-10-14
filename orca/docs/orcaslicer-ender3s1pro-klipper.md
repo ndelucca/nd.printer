@@ -569,8 +569,8 @@ cortavientos. Ver sección 5.
 
 | | PLA | PETG | ABS | TPU Flex |
 |---|---|---|---|---|
-| Nozzle | 215 | 240 | 255 | 230 |
-| Primera capa | 220 | 245 | 260 | 230 |
+| Nozzle | 215 | 240 | 255 | 220 |
+| Primera capa | 220 | 245 | 260 | 225 |
 | Cama | 60 | 70 | 100 | 45 |
 | Rango sugerido | 190-230 | 220-260 | 230-270 | 210-240 |
 | Caudal máximo | 10 mm3/s | 9 mm3/s | 10 mm3/s | 3.5 mm3/s |
@@ -684,7 +684,7 @@ Configuración específica para que no se trabe el Sprite:
  Z hop                 desactivado
  Retraer al cambiar de capa   no
  Wipe                  desactivado
- Desplazamiento mínimo para retraer   3 mm
+ Desplazamiento mínimo para retraer   2 mm
 ```
 
 Cargá el filamento a mano, despacio, con el extrusor ya caliente. El TPU se
@@ -871,7 +871,7 @@ calibrar el flujo significa recalibrar el flujo.
      OrcaSlicer -> Calibration -> Pressure Advance (modo Tower)
      Lo pone KLIPPER, no el laminador: la tabla variable_pa del macro
      START_PRINT en versions/<CURRENT>/macros.cfg.
-         PLA 0.04   PETG 0.06   ABS 0.05   TPU 0.6
+         PLA 0.04   PETG 0.06   ABS 0.05   TPU 0.1
      Cambiar el valor EN LOS DOS LADOS (variable_pa y la clave
      pressure_advance del filamento). `orca.py check` falla si quedan
      distintos.
