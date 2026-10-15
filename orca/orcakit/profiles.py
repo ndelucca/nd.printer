@@ -815,8 +815,8 @@ TPU_PROC = replace(
 # los soportes de Standard -XY 0.35, interfaz casi solida abajo y arriba- el
 # soporte sale arrancando la cara inferior de la pieza, o no sale.
 #
-# LO QUE NO SE TOCA: la velocidad, que la gobierna el techo de caudal del
-# filamento (9 mm3/s), ni el hueco Z. Una capa de aire alcanza si la interfaz
+# LO QUE NO SE TOCA: la velocidad de la pieza, que la gobierna el techo de
+# caudal del filamento (9 mm3/s), ni el hueco Z. Una capa de aire alcanza si la interfaz
 # se enfria rapido, y de eso se encarga el filamento con
 # support_material_interface_fan_speed al 100%. Si aun asi suelda, el paso
 # siguiente es 0.4 (dos capas), como en TPU, pagando cara inferior rugosa.
@@ -832,6 +832,14 @@ PETG_PROC = replace(
     # Sin interfaz inferior: cuando el soporte arranca ENCIMA de la pieza, una
     # interfaz densa ahi es una cara de PETG soldada sobre otra.
     support_interface_bottom_layers="0",
+    # El cuerpo del soporte. Con el de Standard (linea 0.36, 80 mm/s, cada
+    # 2.5 mm) el PETG apenas se apoya sobre la linea de abajo: cada linea es
+    # una pared fina que en capas altas se mueve al pasar el nozzle, y la
+    # siguiente cae al costado. Linea mas ancha que el nozzle, mas lenta y
+    # mas junta para que cada pasada aplaste sobre la anterior.
+    support_line_width="0.45",
+    support_speed="50",
+    support_base_pattern_spacing="2.0",
     # Sin planchado: el PETG se pega al nozzle, y el segundo pase levanta
     # material y lo devuelve como grumos tostados sobre la cara superior que
     # existia para quedar lisa.
