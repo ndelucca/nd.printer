@@ -757,7 +757,7 @@ END_PRINT</pre></div>
     <p>La cama está a 70 a propósito: cuanto más caliente, más se suelda. Si te despega en una esquina, sumá brim antes de subir temperatura.</p>
   </div>
   <p>Proceso: <code>0.20mm PETG @EnderS1Pro</code>.</p>
-  <p><strong>Primera capa más aplastada que el PLA, sin tocar el probe.</strong> El <code>z_offset</code> es uno solo y está calibrado con PLA. <code>START_PRINT</code> tiene una tabla <code>variable_z_adjust</code> por material, hermana de <code>variable_pa</code>, que se suma al <code>z_offset</code>: PETG va <strong>-0.045 mm</strong>, el resto 0. Estuvo en +0.03 y la pieza no pegó en absoluto; en 0 tampoco, y con -0.025 las islas chicas se despegaban. La prueba del papel no distingue estas diferencias. Si se vuelve a tocar, de a 0.01 y mirando la purga, que tiene que verse redondeada arriba, no plana y translúcida.</p>
+  <p><strong>Primera capa más aplastada que el PLA, sin tocar el probe.</strong> El <code>z_offset</code> es uno solo y está calibrado con PLA. <code>START_PRINT</code> tiene una tabla <code>variable_z_adjust</code> por material, hermana de <code>variable_pa</code>, que se suma al <code>z_offset</code>: PETG va <strong>-0.06 mm</strong>, el resto 0. Estuvo en +0.03 y la pieza no pegó en absoluto; en 0 tampoco, y con -0.025 las islas chicas se despegaban. La prueba del papel no distingue estas diferencias. Si se vuelve a tocar, de a 0.01 y mirando la purga, que tiene que verse redondeada arriba, no plana y translúcida.</p>
   <div class="note warn">
     <span class="tag">Babysteps solo con ajuste 0</span>
     <p><code>Z_OFFSET_APPLY_PROBE</code> toma el offset total, ajuste incluido, y un ajuste distinto de 0 quedaría sumado dos veces. El <code>z_offset</code> del probe se afina con PLA.</p>

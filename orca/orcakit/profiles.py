@@ -959,7 +959,7 @@ PETG = replace(
                     "Cama a 70, no subir mas.\n"
                     "Proceso: 0.20mm PETG @EnderS1Pro (soportes que se despegan, sin planchado).\n"
                     "Primera capa MAS aplastada que el PLA: START_PRINT baja el nozzle\n"
-                    "0.045 mm solo (variable_z_adjust). No promover babysteps de PETG al probe.\n"
+                    "0.06 mm solo (variable_z_adjust). No promover babysteps de PETG al probe.\n"
                     "SECAR ANTES DE USAR: 65 grados, 4 a 6 h. Hilos, burbujas o superficie\n"
                     "opaca son humedad antes que retraccion.\n"
                     "Caudal maximo 9 mm3/s. Pressure advance sugerido 0.06.",),

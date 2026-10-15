@@ -54,7 +54,7 @@
         "9"
     ],
     "filament_notes": [
-        "Printalot PETG - 1.75mm\nOJO con la chapa PEI del lado LISO: el PETG se suelda al PEI y arranca\npedazos de la lamina. Usar SIEMPRE stick de pegamento como separador\ny despegar recien con la cama fria.\nCama a 70, no subir mas.\nProceso: 0.20mm PETG @EnderS1Pro (soportes que se despegan, sin planchado).\nPrimera capa MAS aplastada que el PLA: START_PRINT baja el nozzle\n0.045 mm solo (variable_z_adjust). No promover babysteps de PETG al probe.\nSECAR ANTES DE USAR: 65 grados, 4 a 6 h. Hilos, burbujas o superficie\nopaca son humedad antes que retraccion.\nCaudal maximo 9 mm3/s. Pressure advance sugerido 0.06."
+        "Printalot PETG - 1.75mm\nOJO con la chapa PEI del lado LISO: el PETG se suelda al PEI y arranca\npedazos de la lamina. Usar SIEMPRE stick de pegamento como separador\ny despegar recien con la cama fria.\nCama a 70, no subir mas.\nProceso: 0.20mm PETG @EnderS1Pro (soportes que se despegan, sin planchado).\nPrimera capa MAS aplastada que el PLA: START_PRINT baja el nozzle\n0.06 mm solo (variable_z_adjust). No promover babysteps de PETG al probe.\nSECAR ANTES DE USAR: 65 grados, 4 a 6 h. Hilos, burbujas o superficie\nopaca son humedad antes que retraccion.\nCaudal maximo 9 mm3/s. Pressure advance sugerido 0.06."
     ],
     "filament_retract_before_wipe": [
         "0%"
