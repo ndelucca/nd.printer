@@ -677,20 +677,21 @@ en tiempo absoluto es casi nada.
 
 Proceso: `0.20mm PETG @EnderS1Pro` (ver sección 5).
 
-**Primera capa con el mismo aplastamiento que el PLA.** El `z_offset` es uno
+**Primera capa más aplastada que el PLA, sin tocar el probe.** El `z_offset` es uno
 solo y está calibrado con PLA. `START_PRINT` tiene una tabla `variable_z_adjust`
 por material, hermana de `variable_pa`, que se suma al `z_offset` del probe:
 
 ```
- PLA 0.00   PETG 0.00   ABS 0.00   TPU 0.00      (mm, positivo = más alto)
+ PLA 0.00   PETG -0.045   ABS 0.00   TPU 0.00    (mm, positivo = más alto)
 ```
 
 El PETG estuvo en +0.03, por el consejo genérico de "PETG menos aplastado para
 que no arrastre". En esta máquina la purga salió apenas apoyada y la pieza no
-pegó en absoluto: sobre PEI liso con pegamento el PETG necesita el mismo
-aplastamiento que el PLA. Si se vuelve a tocar, de a 0.01 y mirando la purga,
-que tiene que verse redondeada arriba, no plana y translúcida (apenas apoyada
-es Z alto). `check` valida la forma de la tabla (valores numéricos, menores a
+pegó en absoluto. En 0 tampoco pegaba; con -0.025 pegó, pero las islas chicas
+se despegaban, así que va -0.045 (sobre PEI liso con pegamento). La prueba del
+papel no distingue estas diferencias. Si se vuelve a tocar, de a 0.01 y mirando
+la purga, que tiene que verse redondeada arriba, no plana y translúcida (apenas
+apoyada es Z alto). `check` valida la forma de la tabla (valores numéricos, menores a
 0.1, claves que sean materiales que existen).
 
 > **Promové babysteps solo desde impresiones con ajuste 0.**

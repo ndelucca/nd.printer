@@ -298,7 +298,7 @@ class TestZAdjust(unittest.TestCase):
         return r
 
     def test_la_tabla_del_repo_pasa(self):
-        r = self._run("{'PLA': 0.0, 'PETG': 0.0, 'ABS': 0.0, 'TPU': 0.0}")
+        r = self._run("{'PLA': 0.0, 'PETG': -0.045, 'ABS': 0.0, 'TPU': 0.0}")
         self.assertEqual((r.failures, r.warnings), (0, 0))
 
     def test_ausente_es_una_falla(self):
